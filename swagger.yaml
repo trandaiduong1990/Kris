@@ -1,0 +1,258 @@
+swagger: "2.0"
+info:
+  description: "This is the krispay server API specifications."
+  version: "1.0.0"
+  title: "KrisPay Service"
+host: "krispay.cdgtaxi.com"
+basePath: "/v1"
+schemes:
+- "https"
+- "http"
+paths:
+  /auth:
+    post:
+      tags:
+      - "Payment"
+      summary: "Authorisation"
+      description: "Pre-Authorisation. Service will create an order to Kris+ before redirect to Kris+"
+      operationId: "preauthId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "Idempotency-Key"
+        type: "string"
+        required: true
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Authorisation"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/AuthorisationStatus"
+            
+  /auth/{bookingRef}:
+    get:
+      tags:
+      - "Payment"
+      summary: "Check the preauth payment status of booking reference"
+      description: "Send to Kris+ get order payment status by orderId"
+      operationId: "getOrderPaymentStatus"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookingRef"
+        in: path
+        description: "Partner Order ID"
+        required: true
+        type: "string"
+      - name: "body"
+        in: body
+        required: true
+        schema: 
+          type: object
+          properties:
+            requestId:
+              type: string
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/AuthorisationStatus"
+
+  /auth/{bookingRef}/cancel:
+    put:
+      tags:
+      - "Payment"
+      summary: "Notify to Kris+ to release the pre auth amount by booking reference"
+      description: "Cancel the preauth and release the authorize amount"
+      operationId: "cancelByBookingRef"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "Idempotency-Key"
+        type: "string"
+        required: true
+      - name: "bookingRef"
+        in: path
+        description: "Booking reference to cancel"
+        required: true
+        type: string
+      - name: "body"
+        in: body
+        required: true
+        schema: 
+          type: object
+          properties:
+            reason:
+              type: string
+            requestId:
+              type: string
+
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AuthorisationStatus"
+                
+  /booking/{bookingRef}/notifications:
+    put:
+      tags:
+      - "Booking"
+      summary: "Notifying the status of the booking to Kris+"
+      description: "Notify the status of the booking to Kris+"
+      operationId: "bookingNotifications"
+      produces:
+      - "application/json"
+      parameters: 
+      - name: "bookingRef"
+        in: path
+        description: "Associated bookingRef to send notifications"
+        required: true
+        type: string
+      - name: "body"
+        in: body
+        description: "Details of notifcations"
+        required: true
+        schema:
+          $ref: "#/definitions/Notification"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AuthorisationStatus"
+  
+  /auth/{bookingRef}/capture:
+    put:
+      tags:
+      - "Payment"
+      summary: "Notify to Kris+ trip completion and final amount to capture at the end of the trip"
+      description: "Capture the total amount for the trip"
+      operationId: "bookingCapture"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "Idempotency-Key"
+        type: "string"
+        required: true
+      - name: "bookingRef"
+        in: path
+        description: "Associated booking reference to capture"
+        required: true
+        type: string
+      - name: "body"
+        in: body
+        description: "Details of capture"
+        required: true
+        schema:
+          $ref: "#/definitions/Capture"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AuthorisationStatus"
+          
+definitions:
+  Status:
+    type: string
+    enum:
+    - SUCCESS
+    - AUTHORIZED
+    - CANCELLED
+    - ERROR
+    - ERR_HOST_UNAVILABLE
+    - ERR_HOST_TIMEOUT
+    - ERR_HOST_ERROR
+    - ERR_VALIDATION
+    - ERR_ORDER_NOT_FOUND
+    - ERR_DUPLICATE_ORDER
+    - ERR_ALREADY_CAPTURE
+  AuthorisationStatus:
+    type: "object"
+    properties:
+      status:
+        $ref: "#/definitions/Status"
+      bookingRef:
+        type: string
+      requestId:
+        type: string
+  Authorisation:
+    type: "object"
+    properties:
+      requestId:
+        type: string
+      bookingRef:
+        type: string
+      amount:
+        type: number
+        format: "double"
+      sessionId:
+        type: string
+      platform:
+        type: string
+  Notification:
+    type: "object"
+    properties:
+      requestId:
+        type: string
+      status:
+        type: string
+        enum: 
+        - DRIVER_SEARCHING
+        - DRIVER_FOUND
+        - DRIVER_ARRIVING
+        - PAX_ON_BOARD
+        - NO_DRIVER_FOUND
+        - TRIP_CANCELLED
+        - NO_SHOW
+      vehicleNumber:
+        type: string
+      vehicleModel:
+        type: string
+      eta:
+        type: string
+        format: "date-time"
+      fare:
+        type: number
+        format: "double"
+      driverHp:
+        type: string
+  Capture:
+    type: "object"
+    properties:
+      requestId:
+        type: string
+      amount:
+        type: number
+        format: "double"
+      jobNumber:
+        type: number
+      entryMode:
+        type: string
+      vehicleId:
+        type: string
+      driverId:
+        type: string
+      entity:
+        type: string
+      adminAmount:
+        type: number
+        format: "double"
+      gstAmount:
+        type: number
+        format: "double"
+      fareAmount:
+        type: number
+        format: "double"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

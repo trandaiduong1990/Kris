@@ -1,0 +1,9 @@
+subprojects {
+    configurations {
+        jpa
+    }
+
+    dependencies {
+        jpa 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'
+    }
+}

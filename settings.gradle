@@ -1,0 +1,5 @@
+rootProject.name = 'krispay'
+
+include 'db'
+include 'server'
+include 'batch'

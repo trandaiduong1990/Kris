@@ -1,0 +1,35 @@
+krispay:
+  url: https://5c8d71e7-bebd-49cd-a6c1-ba10ab95f684.mock.pstmn.io
+  #url: https://localhost:44330
+  api-key: 2fvmer3qbk7f3jnqneg58bu2
+  secret: qvxkmw57pec7
+  timeout: 30
+
+server:
+  port: 8890
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
+  trace:
+    http:
+      enabled: true
+
+logging:
+  level:
+    com.cdg.: DEBUG
+    reactor:
+      netty:
+        http:
+          client: DEBUG
