@@ -1,0 +1,2 @@
+com/cdg/krispay/batch/BatchApplicationTests.java
+ com.cdg.krispay.batch.BatchApplicationTests

@@ -1,0 +1,6 @@
+com/cdg/krispay/KrispayApplicationTests.java
+ com.cdg.krispay.KrispayApplicationTests
+com/cdg/krispay/service/CreateOrderTest.java
+ com.cdg.krispay.service.CreateOrderTest
+com/cdg/krispay/controller/AuthorisationControllerV1Test.java
+ com.cdg.krispay.controller.AuthorisationControllerV1Test
