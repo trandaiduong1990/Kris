@@ -38,6 +38,8 @@ public class AuthorisationControllerV1 extends BaseController {
         }
 
         KrisPayTransaction krisPayTransaction = txnLogRepo.findByIdempotencyKey(idempotencyKey);
+        
+        //Order info request
         if ( krisPayTransaction != null ) {
 
             if ( krisPayTransaction.getKrisPayMessageType() != KrisPayMessageType.AUTHORISE ) {
