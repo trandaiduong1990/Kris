@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cdg.krispay.service.CreateOrderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-03-09T04:12:51" hostname="CTPL-IT-NC2176" time="5.978">
+  <properties/>
+  <testcase name="testFailedWrongMessageType()" classname="com.cdg.krispay.service.CreateOrderTest" time="0.114"/>
+  <testcase name="testSuccessCreateOrder()" classname="com.cdg.krispay.service.CreateOrderTest" time="0.752"/>
+  <testcase name="testTimeoutCreateOrder()" classname="com.cdg.krispay.service.CreateOrderTest" time="5.043"/>
+  <testcase name="testNon200HttpStatusCreateOrder()" classname="com.cdg.krispay.service.CreateOrderTest" time="0.05"/>
+  <testcase name="testNoConnectionCreateOrder()" classname="com.cdg.krispay.service.CreateOrderTest" time="0.016"/>
+  <system-out><![CDATA[2022-03-09 12:12:51.128  INFO 7860 --- [WebServer 51206] okhttp3.mockwebserver.MockWebServer      : MockWebServer[51206] starting to accept connections
+2022-03-09 12:12:51.782 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1] REGISTERED
+2022-03-09 12:12:51.833 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1] CONNECT: localhost/127.0.0.1:51206
+2022-03-09 12:12:51.840 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] ACTIVE
+2022-03-09 12:12:51.855 DEBUG 7860 --- [ctor-http-nio-2] r.netty.http.client.HttpClientConnect    : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] Handler is being applied: {uri=http://localhost:51206/partner/orders, method=POST}
+2022-03-09 12:12:51.926 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] WRITE: 234B POST /partner/orders HTTP/1.1
+user-agent: ReactorNetty/1.0.14
+host: localhost:51206
+accept: */*
+x-signature: [B@6b219f2a
+kp-request-id: 4c3472d4-db5b-4ee0-9c83-5c0893aba83f
+Content-Type: application/json
+content-length: 154
+
+
+2022-03-09 12:12:51.927 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] WRITE: 154B {"partnerOrderId":"8a1318c8-7431-48eb-8c5e-df9239b32cdf","sessionId":"d8080bb6-8c17-45a7-bc18-f72a858c5f90","payment":{"amount":0.1,"currencyCode":"SGD"}}
+2022-03-09 12:12:51.928 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] FLUSH
+2022-03-09 12:12:51.937  INFO 7860 --- [127.0.0.1:51227] okhttp3.mockwebserver.MockWebServer      : MockWebServer[51206] received request: POST /partner/orders HTTP/1.1 and responded: HTTP/1.1 200 OK
+2022-03-09 12:12:51.949 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] READ: 224B HTTP/1.1 200 OK
+Content-Length: 152
+Content-Type: application/json
+
+{"partnerOrderId":"8a1318c8-7431-48eb-8c5e-df9239b32cdf","paymentStatus":"UNPAID","createdAt":"2022-03-09T12:12:51","orderExpiry":"2022-03-09T12:12:51"}
+2022-03-09 12:12:51.955 DEBUG 7860 --- [ctor-http-nio-2] r.n.http.client.HttpClientOperations     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] Received response (auto-read:false) : [Content-Type=application/json, content-length=152]
+2022-03-09 12:12:51.984 DEBUG 7860 --- [ctor-http-nio-2] r.n.http.client.HttpClientOperations     : [db69cfb1-1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] Received last HTTP packet
+2022-03-09 12:12:51.991 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] READ COMPLETE
+2022-03-09 12:12:52.000 DEBUG 7860 --- [ctor-http-nio-2] r.netty.http.client.HttpClientConnect    : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] Handler is being applied: {uri=http://localhost:51206/partner/orders, method=POST}
+2022-03-09 12:12:52.002 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] WRITE: 234B POST /partner/orders HTTP/1.1
+user-agent: ReactorNetty/1.0.14
+host: localhost:51206
+accept: */*
+x-signature: [B@2b456efe
+kp-request-id: d6367d1d-8a50-4977-b180-28421225cb85
+Content-Type: application/json
+content-length: 154
+
+
+2022-03-09 12:12:52.004 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] WRITE: 154B {"partnerOrderId":"256f2708-dee9-4d3e-8f1a-eb9e4bb8ef22","sessionId":"0aa29cff-cc43-4385-9418-fad2127e8ed9","payment":{"amount":0.1,"currencyCode":"SGD"}}
+2022-03-09 12:12:52.004 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] FLUSH
+2022-03-09 12:12:57.016  WARN 7860 --- [ctor-http-nio-2] r.netty.http.client.HttpClientConnect    : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] The connection observed an error
+
+io.netty.handler.timeout.ReadTimeoutException: null
+
+2022-03-09 12:12:57.023 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 - R:localhost/127.0.0.1:51206] CLOSE
+2022-03-09 12:12:57.028 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 ! R:localhost/127.0.0.1:51206] INACTIVE
+2022-03-09 12:12:57.028 DEBUG 7860 --- [ctor-http-nio-2] reactor.netty.http.client.HttpClient     : [db69cfb1-2, L:/127.0.0.1:51227 ! R:localhost/127.0.0.1:51206] UNREGISTERED
+2022-03-09 12:12:57.031 ERROR 7860 --- [    Test worker] com.cdg.krispay.service.KrisPayService   : Exception sending to krispay server 
+
+org.springframework.web.reactive.function.client.WebClientRequestException: nested exception is io.netty.handler.timeout.ReadTimeoutException
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:141) ~[spring-webflux-5.3.14.jar:5.3.14]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? Request to POST http://localhost:51206/partner/orders [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:141) ~[spring-webflux-5.3.14.jar:5.3.14]
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4400) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:204) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:225) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:274) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:415) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onNext(FluxConcatMap.java:251) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.EmitterProcessor.drain(EmitterProcessor.java:491) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.EmitterProcessor.tryEmitNext(EmitterProcessor.java:299) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.SinkManySerialized.tryEmitNext(SinkManySerialized.java:100) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.InternalManySink.emitNext(InternalManySink.java:27) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:190) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:194) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.netty.http.client.HttpClientConnect$HttpObserver.onUncaughtException(HttpClientConnect.java:384) ~[reactor-netty-http-1.0.14.jar:1.0.14]
+		at reactor.netty.ReactorNetty$CompositeConnectionObserver.onUncaughtException(ReactorNetty.java:664) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onUncaughtException(DefaultPooledConnectionProvider.java:201) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnection.onUncaughtException(DefaultPooledConnectionProvider.java:449) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:232) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.FluxReceive.onInboundError(FluxReceive.java:453) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.ChannelOperations.onInboundError(ChannelOperations.java:488) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.ChannelOperationsHandler.exceptionCaught(ChannelOperationsHandler.java:126) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:302) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeExceptionCaught(AbstractChannelHandlerContext.java:281) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireExceptionCaught(AbstractChannelHandlerContext.java:273) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.timeout.ReadTimeoutHandler.readTimedOut(ReadTimeoutHandler.java:98) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.timeout.ReadTimeoutHandler.channelIdle(ReadTimeoutHandler.java:90) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.timeout.IdleStateHandler$ReaderIdleTimeoutTask.run(IdleStateHandler.java:506) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.timeout.IdleStateHandler$AbstractIdleTask.run(IdleStateHandler.java:478) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:170) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:469) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:503) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.Mono.block(Mono.java:1707) ~[reactor-core-3.4.13.jar:3.4.13]
+		at com.cdg.krispay.service.KrisPayService.createOrder(KrisPayService.java:94) ~[main/:na]
+		at com.cdg.krispay.service.CreateOrderTest.lambda$testTimeoutCreateOrder$2(CreateOrderTest.java:184) ~[test/:na]
+		at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:55) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:37) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3082) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at com.cdg.krispay.service.CreateOrderTest.testTimeoutCreateOrder(CreateOrderTest.java:183) ~[test/:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725) ~[junit-platform-commons-1.8.2.jar:1.8.2]
+		at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[na:na]
+		at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96) ~[na:na]
+		at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+		at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+		at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94) ~[na:na]
+		at com.sun.proxy.$Proxy2.stop(Unknown Source) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.worker.TestWorker.stop(TestWorker.java:133) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414) ~[na:na]
+		at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64) ~[na:na]
+		at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48) ~[na:na]
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+		at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56) ~[na:na]
+		at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+Caused by: io.netty.handler.timeout.ReadTimeoutException: null
+
+2022-03-09 12:12:57.043 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38] REGISTERED
+2022-03-09 12:12:57.044 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38] CONNECT: localhost/127.0.0.1:51206
+2022-03-09 12:12:57.045 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] ACTIVE
+2022-03-09 12:12:57.045 DEBUG 7860 --- [ctor-http-nio-3] r.netty.http.client.HttpClientConnect    : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Handler is being applied: {uri=http://localhost:51206/partner/orders, method=POST}
+2022-03-09 12:12:57.050 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] WRITE: 234B POST /partner/orders HTTP/1.1
+user-agent: ReactorNetty/1.0.14
+host: localhost:51206
+accept: */*
+x-signature: [B@36d81dba
+kp-request-id: a0c9c65a-a4fa-4067-a226-e7b7ffae77cd
+Content-Type: application/json
+content-length: 154
+
+
+2022-03-09 12:12:57.051 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] WRITE: 154B {"partnerOrderId":"799a0dbc-c186-4b29-a1ee-ca180e1f6184","sessionId":"22250f29-ce38-4e14-9fd4-ae9df640f7a6","payment":{"amount":0.1,"currencyCode":"SGD"}}
+2022-03-09 12:12:57.051 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] FLUSH
+2022-03-09 12:12:57.052  INFO 7860 --- [127.0.0.1:51230] okhttp3.mockwebserver.MockWebServer      : MockWebServer[51206] received request: POST /partner/orders HTTP/1.1 and responded: HTTP/1.1 500 Internal server error
+2022-03-09 12:12:57.052 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] READ: 89B HTTP/1.1 500 Internal server error
+Content-Length: 0
+Content-Type: application/json
+
+
+2022-03-09 12:12:57.052 DEBUG 7860 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Received response (auto-read:false) : [Content-Type=application/json, content-length=0]
+2022-03-09 12:12:57.057 DEBUG 7860 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ef1f7a38-1, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Received last HTTP packet
+2022-03-09 12:12:57.074 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] READ COMPLETE
+2022-03-09 12:12:57.081 ERROR 7860 --- [    Test worker] com.cdg.krispay.service.KrisPayService   : Exception sending to krispay server 
+
+org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError: 500 Internal Server Error from POST http://localhost:51206/partner/orders
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.14.jar:5.3.14]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ? 500 from POST http://localhost:51206/partner/orders [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:218) ~[spring-webflux-5.3.14.jar:5.3.14]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:207) ~[spring-webflux-5.3.14.jar:5.3.14]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:109) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:150) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onComplete(FluxContextWrite.java:126) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onComplete(FluxMapFuseable.java:344) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onComplete(FluxFilterFuseable.java:391) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1817) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:159) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:142) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:142) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:702) ~[reactor-netty-http-1.0.14.jar:1.0.14]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93) ~[reactor-netty-core-1.0.14.jar:1.0.14]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:324) ~[netty-codec-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:296) ~[netty-codec-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.handler.logging.LoggingHandler.channelRead(LoggingHandler.java:280) ~[netty-handler-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.72.Final.jar:4.1.72.Final]
+		at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.4.13.jar:3.4.13]
+		at reactor.core.publisher.Mono.block(Mono.java:1707) ~[reactor-core-3.4.13.jar:3.4.13]
+		at com.cdg.krispay.service.KrisPayService.createOrder(KrisPayService.java:94) ~[main/:na]
+		at com.cdg.krispay.service.CreateOrderTest.lambda$testNon200HttpStatusCreateOrder$1(CreateOrderTest.java:154) ~[test/:na]
+		at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:55) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:37) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3082) ~[junit-jupiter-api-5.8.2.jar:5.8.2]
+		at com.cdg.krispay.service.CreateOrderTest.testNon200HttpStatusCreateOrder(CreateOrderTest.java:153) ~[test/:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725) ~[junit-platform-commons-1.8.2.jar:1.8.2]
+		at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66) ~[junit-jupiter-engine-5.8.2.jar:5.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.8.2.jar:1.8.2]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[na:na]
+		at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[na:na]
+		at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96) ~[na:na]
+		at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+		at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+		at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94) ~[na:na]
+		at com.sun.proxy.$Proxy2.stop(Unknown Source) ~[na:na]
+		at org.gradle.api.internal.tasks.testing.worker.TestWorker.stop(TestWorker.java:133) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+		at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164) ~[na:na]
+		at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414) ~[na:na]
+		at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64) ~[na:na]
+		at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48) ~[na:na]
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+		at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56) ~[na:na]
+		at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+
+2022-03-09 12:12:57.094 DEBUG 7860 --- [ctor-http-nio-3] r.netty.http.client.HttpClientConnect    : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Handler is being applied: {uri=http://localhost:51206/partner/orders, method=POST}
+2022-03-09 12:12:57.096 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] WRITE: 234B POST /partner/orders HTTP/1.1
+user-agent: ReactorNetty/1.0.14
+host: localhost:51206
+accept: */*
+x-signature: [B@52ef26a7
+kp-request-id: 5421cd3a-61ac-47e1-93b8-e834af4840a7
+Content-Type: application/json
+content-length: 154
+
+
+2022-03-09 12:12:57.097 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] WRITE: 154B {"partnerOrderId":"d051583f-a227-419b-a65f-fea73fabfc43","sessionId":"517a7fcf-ebd3-40b2-b650-5ddb4b6b9ffc","payment":{"amount":0.1,"currencyCode":"SGD"}}
+2022-03-09 12:12:57.097 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] FLUSH
+2022-03-09 12:12:57.099  INFO 7860 --- [127.0.0.1:51230] okhttp3.mockwebserver.MockWebServer      : MockWebServer[51206] received request: POST /partner/orders HTTP/1.1 and responded: HTTP/1.1 200 OK
+2022-03-09 12:12:57.099 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] READ: 70B HTTP/1.1 200 OK
+Content-Length: 0
+Content-Type: application/json
+
+
+2022-03-09 12:12:57.100 DEBUG 7860 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Received response (auto-read:false) : [Content-Type=application/json, content-length=0]
+2022-03-09 12:12:57.103 DEBUG 7860 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ef1f7a38-2, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] Received last HTTP packet
+2022-03-09 12:12:57.104 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] READ COMPLETE
+2022-03-09 12:12:57.106 ERROR 7860 --- [    Test worker] com.cdg.krispay.service.KrisPayService   : Connection error with kris pay
+2022-03-09 12:12:57.110  INFO 7860 --- [WebServer 51206] okhttp3.mockwebserver.MockWebServer      : MockWebServer[51206] done accepting connections: Socket closed
+2022-03-09 12:12:57.111 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 - R:localhost/127.0.0.1:51206] READ COMPLETE
+2022-03-09 12:12:57.112 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 ! R:localhost/127.0.0.1:51206] INACTIVE
+2022-03-09 12:12:57.112 DEBUG 7860 --- [ctor-http-nio-3] reactor.netty.http.client.HttpClient     : [ef1f7a38, L:/127.0.0.1:51230 ! R:localhost/127.0.0.1:51206] UNREGISTERED
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

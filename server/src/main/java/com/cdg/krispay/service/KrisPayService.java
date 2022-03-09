@@ -8,12 +8,17 @@ import com.cdg.krispay.dto.*;
 import com.cdg.krispay.exception.NonRetriableException;
 import com.cdg.krispay.exception.RetriableException;
 import com.cdg.krispay.repo.ProcessorTxnLogRepo;
+import com.google.common.base.Strings;
+
 import io.netty.handler.logging.LogLevel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientRequest;
@@ -73,6 +78,7 @@ public class KrisPayService {
                 krisPayTransaction.getAmount(),
                 krisPayTransaction.getSessionId() );
 
+        
         KrisPayProcessorTransactionLog krisPayProcessorTransactionlog = new KrisPayProcessorTransactionLog(krisPayTransaction.getKrisPayMessageType());
         krisPayProcessorTransactionlog.setPartnerOrderId(krisPayTransaction.getBookingRef());
         krisPayProcessorTransactionlog.setSessionId(krisPayTransaction.getSessionId());
@@ -85,7 +91,9 @@ public class KrisPayService {
             response = this.webClient
                     .post()
                     .uri("/partner/orders")
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header("x-signature", getSignature())
+                    .header("api-key", apiKey)
                     .header("kp-request-id", UUID.randomUUID().toString())
                     .body(Mono.just(createOrder), CreateOrder.class)
                     .retrieve()
@@ -168,7 +176,9 @@ public class KrisPayService {
     }
 
     private String getSignature() throws NoSuchAlgorithmException {
-        String hashData = apiKey + secret + Instant.now().getEpochSecond();
-        return DigestUtils.sha256(hashData).toString();
+    	Long timestamp = System.currentTimeMillis()/1000; 
+        String hashData = apiKey + secret + timestamp;
+//        return DigestUtils.sha256(hashData).toString();
+        return DigestUtils.sha256Hex(hashData);
     }
 }

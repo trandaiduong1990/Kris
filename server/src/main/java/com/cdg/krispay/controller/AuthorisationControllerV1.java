@@ -9,6 +9,9 @@ import com.cdg.krispay.exception.RetriableException;
 import com.cdg.krispay.repo.TxnLogRepo;
 import com.cdg.krispay.service.KrisPayService;
 import lombok.extern.slf4j.Slf4j;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,6 +64,7 @@ public class AuthorisationControllerV1 extends BaseController {
         krisPayTransaction.setSessionId(authorisation.getSessionId());
         krisPayTransaction.setPlatform(authorisation.getPlatform());
         krisPayTransaction.setRequestId(authorisation.getRequestId());
+        krisPayTransaction.setCreatedAt(new DateTime().toDateTime(DateTimeZone.UTC));
 
         AuthorisationStatus authorisationStatus = new AuthorisationStatus();
         authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());

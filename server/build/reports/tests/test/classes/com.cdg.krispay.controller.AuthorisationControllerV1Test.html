@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.257s</div>
+<div class="counter">0.430s</div>
 <p>duration</p>
 </div>
 </td>
@@ -193,7 +193,7 @@
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.domain.KrisPayTransaction.setBookingRef(String)&quot; because &quot;krisPayTransaction&quot; is null
-	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:56)
+	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:58)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -332,7 +332,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.domain.KrisPayTransaction.setBookingRef(String)&quot; because &quot;krisPayTransaction&quot; is null
-	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:56)
+	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:58)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -471,7 +471,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.domain.KrisPayTransaction.setBookingRef(String)&quot; because &quot;krisPayTransaction&quot; is null
-	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:56)
+	at com.cdg.krispay.controller.AuthorisationControllerV1.authorise(AuthorisationControllerV1.java:58)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -502,42 +502,42 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
 </thead>
 <tr>
 <td class="success">testAuthorisationFailValidation()</td>
-<td class="success">0.013s</td>
+<td class="success">0.028s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testAuthorisationNoIdempotencyKey()</td>
-<td class="success">0.006s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testDeclineAuthoriseRepeat()</td>
-<td class="success">0.043s</td>
+<td class="success">0.072s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">testFailedAuthoriseDueToServiceExceptionNoRepeat()</td>
-<td class="failures">0.007s</td>
+<td class="failures">0.013s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">testFailedAuthoriseNoRepeat()</td>
-<td class="failures">0.010s</td>
+<td class="failures">0.013s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">testMismatchIdempotencyAuthoriseRepeat()</td>
-<td class="success">0.164s</td>
+<td class="success">0.265s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="failures">testSuccessAuthoriseNoRepeat()</td>
-<td class="failures">0.007s</td>
+<td class="failures">0.013s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">testSuccessAuthoriseRepeat()</td>
-<td class="success">0.007s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -545,23 +545,23 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>23:28:07.261 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-23:28:07.268 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-23:28:07.291 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-23:28:07.298 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test], using SpringBootContextLoader
-23:28:07.300 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: class path resource [com/cdg/krispay/controller/AuthorisationControllerV1Test-context.xml] does not exist
-23:28:07.300 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: class path resource [com/cdg/krispay/controller/AuthorisationControllerV1TestContext.groovy] does not exist
-23:28:07.300 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: no resource found for suffixes {-context.xml, Context.groovy}.
-23:28:07.301 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: AuthorisationControllerV1Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:28:07.344 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.cdg.krispay.controller.AuthorisationControllerV1Test]
-23:28:07.387 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [E:\krispay\server\build\classes\java\main\com\cdg\krispay\KrispayApplication.class]
-23:28:07.388 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.cdg.krispay.KrispayApplication for test class com.cdg.krispay.controller.AuthorisationControllerV1Test
-23:28:07.470 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: using defaults.
-23:28:07.471 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-23:28:07.481 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@709f3fa2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@117942b0, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3edcc126, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@117e2954, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@181566f6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@43a2cb86, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1b2ff725, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7bfb599d, org.springframework.test.context.event.EventPublishingTestExecutionListener@486aa2c2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1d41beb2, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7933f4e0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@58a56dea, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4544a88e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@55e02aba, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@33125012]
-23:28:07.484 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@1dea515f testClass = AuthorisationControllerV1Test, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@280ec73 testClass = AuthorisationControllerV1Test, locations = '{}', classes = '{class com.cdg.krispay.KrispayApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@dd13084, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@7a5e75be, [ImportsContextCustomizer@5234eb3a key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@665216d8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b07e6ae, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@bd8e6a0a, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@29b5c57f, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@31bc086, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@710409e4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
-23:28:07.517 [Test worker] DEBUG org.springframework.boot.ApplicationServletEnvironment - Activating profiles []
-23:28:07.518 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+<pre>12:12:41.254 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+12:12:41.263 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+12:12:41.295 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+12:12:41.305 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test], using SpringBootContextLoader
+12:12:41.308 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: class path resource [com/cdg/krispay/controller/AuthorisationControllerV1Test-context.xml] does not exist
+12:12:41.309 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: class path resource [com/cdg/krispay/controller/AuthorisationControllerV1TestContext.groovy] does not exist
+12:12:41.309 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: no resource found for suffixes {-context.xml, Context.groovy}.
+12:12:41.310 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: AuthorisationControllerV1Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:12:41.388 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.cdg.krispay.controller.AuthorisationControllerV1Test]
+12:12:41.473 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [D:\Work\Kris+ Specs\Kris\server\build\classes\java\main\com\cdg\krispay\KrispayApplication.class]
+12:12:41.475 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.cdg.krispay.KrispayApplication for test class com.cdg.krispay.controller.AuthorisationControllerV1Test
+12:12:41.596 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.cdg.krispay.controller.AuthorisationControllerV1Test]: using defaults.
+12:12:41.597 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+12:12:41.616 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@31efac15, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1bbb880f, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7c9bb8e6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4d0bd58, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@489336d3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@f2f243e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2e52e1b5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2fe9b35a, org.springframework.test.context.event.EventPublishingTestExecutionListener@7e9d3dda, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@865e8e3, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3103ef13, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5312e90a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@44f66d5f, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6373b7d2, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4da6a7d8]
+12:12:41.621 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@2457cdab testClass = AuthorisationControllerV1Test, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6ed6d4f1 testClass = AuthorisationControllerV1Test, locations = '{}', classes = '{class com.cdg.krispay.KrispayApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@144921e0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@cf822d9, [ImportsContextCustomizer@15d46c5f key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@66431c50, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4c95b30d, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@90570b48, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@160ebcb6, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@6567b324, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@599a2078], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+12:12:41.674 [Test worker] DEBUG org.springframework.boot.ApplicationServletEnvironment - Activating profiles []
+12:12:41.675 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -571,26 +571,27 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.6.2)
 
-2022-03-07 23:28:07.734  INFO 9692 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Starting AuthorisationControllerV1Test using Java 15.0.2 on Clark-PC with PID 9692 (started by test in E:\krispay\server)
-2022-03-07 23:28:07.734 DEBUG 9692 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Running with Spring Boot v2.6.2, Spring v5.3.14
-2022-03-07 23:28:07.734  INFO 9692 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : No active profile set, falling back to default profiles: default
-2022-03-07 23:28:08.312  INFO 9692 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-03-07 23:28:08.418  INFO 9692 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 2 JPA repository interfaces.
-2022-03-07 23:28:09.122  INFO 9692 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-03-07 23:28:09.244  INFO 9692 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-03-07 23:28:09.292  INFO 9692 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-03-07 23:28:09.328  INFO 9692 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
-2022-03-07 23:28:09.356  INFO 9692 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-03-07 23:28:09.436  INFO 9692 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-03-07 23:28:09.716  INFO 9692 --- [    Test worker] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cdg.krispay.domain.KrisPayProcessorTransactionLog (class must be instantiated by Interceptor)
-2022-03-07 23:28:09.806  INFO 9692 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-03-07 23:28:09.812  INFO 9692 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-03-07 23:28:10.076  WARN 9692 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-03-07 23:28:10.832  INFO 9692 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2022-03-07 23:28:10.832  INFO 9692 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2022-03-07 23:28:10.837  INFO 9692 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2022-03-07 23:28:10.855  INFO 9692 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 23 ms
-2022-03-07 23:28:10.936  INFO 9692 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Started AuthorisationControllerV1Test in 3.416 seconds (JVM running for 4.401)
+2022-03-09 12:12:42.011  INFO 7860 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Starting AuthorisationControllerV1Test using Java 15.0.2 on CTPL-IT-NC2176 with PID 7860 (started by ctrandd in D:\Work\Kris+ Specs\Kris\server)
+2022-03-09 12:12:42.013 DEBUG 7860 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-03-09 12:12:42.013  INFO 7860 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : No active profile set, falling back to default profiles: default
+2022-03-09 12:12:43.170  INFO 7860 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 12:12:43.342  INFO 7860 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 157 ms. Found 2 JPA repository interfaces.
+2022-03-09 12:12:44.632  INFO 7860 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-09 12:12:44.855  INFO 7860 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-09 12:12:44.931  INFO 7860 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 12:12:44.996  INFO 7860 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2022-03-09 12:12:45.049  INFO 7860 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-09 12:12:45.174  INFO 7860 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-03-09 12:12:45.589  INFO 7860 --- [    Test worker] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cdg.krispay.domain.KrisPayProcessorTransactionLog (class must be instantiated by Interceptor)
+2022-03-09 12:12:45.711  INFO 7860 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-09 12:12:45.718  INFO 7860 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 12:12:46.189  WARN 7860 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-09 12:12:46.593  INFO 7860 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2022-03-09 12:12:47.587  INFO 7860 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-03-09 12:12:47.587  INFO 7860 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-03-09 12:12:47.597  INFO 7860 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-03-09 12:12:47.633  INFO 7860 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 46 ms
+2022-03-09 12:12:47.754  INFO 7860 --- [    Test worker] c.c.k.c.AuthorisationControllerV1Test    : Started AuthorisationControllerV1Test in 6.077 seconds (JVM running for 7.456)
 </pre>
 </span>
 </div>
@@ -602,7 +603,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.cdg.krispay.d
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.8</a> at Mar 7, 2022, 11:28:11 PM</p>
+<a href="http://www.gradle.org">Gradle 6.8</a> at Mar 9, 2022, 12:12:59 PM</p>
 </div>
 </div>
 </body>

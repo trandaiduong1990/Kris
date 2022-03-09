@@ -3,7 +3,8 @@ package com.cdg.krispay.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-
+import org.joda.time.DateTime;  
+import org.joda.time.DateTimeZone;  
 @Data
 @Entity
 @Table(name = "TMTB_KRIS_TXN")
@@ -25,6 +26,6 @@ public class KrisPayTransaction {
     Double amount;
     String platform;
     String status;
-
-
+    DateTime orderExpiry;
+    DateTime createdAt;
 }
