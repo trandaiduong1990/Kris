@@ -2,8 +2,8 @@ package com.cdg.krispay.domain;
 
 public enum KrisPayRequestStatus {
 
-    ERROR("error"),
-    SUCCESS("success");
+    ERROR("ERROR"),
+    SUCCESS("SUCCESS");
 
     public final String type;
 

@@ -28,7 +28,8 @@ public class KrisPayProcessorTransactionLog {
     String createdAt;
     String orderExpiry;
     String request;
-    String response;
+    String message;
+    String code;
     Long txnId;
 
     public KrisPayProcessorTransactionLog(KrisPayMessageType msgType) {

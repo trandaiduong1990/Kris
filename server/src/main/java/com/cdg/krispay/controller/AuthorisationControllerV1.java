@@ -2,6 +2,7 @@ package com.cdg.krispay.controller;
 
 import com.cdg.krispay.domain.*;
 import com.cdg.krispay.dto.CreateOrder;
+import com.cdg.krispay.dto.CreateOrderResponse;
 import com.cdg.krispay.exception.IdempotentKeyMessageTypeMismatchException;
 import com.cdg.krispay.exception.MissingIdempotencyKeyException;
 import com.cdg.krispay.exception.NonRetriableException;
@@ -13,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -24,84 +27,89 @@ import javax.validation.Valid;
 @RestController
 public class AuthorisationControllerV1 extends BaseController {
 
-    @Autowired
-    TxnLogRepo txnLogRepo;
+	@Autowired
+	TxnLogRepo txnLogRepo;
 
-    @Autowired
-    KrisPayService krisPayService;
+	@Autowired
+	KrisPayService krisPayService;
+	
+	@GetMapping("/auth/:bookingRef")
+	public AuthorisationStatus preAuthStatus(@PathVariable(value = "bookingRef") String bookingRef) {
+		AuthorisationStatus authorisationStatus = new AuthorisationStatus();
+		
+		try {
+			KrisPayTransaction krisPayTransaction = txnLogRepo.findByRequestId(bookingRef);
+			if (krisPayTransaction != null) {
+				CreateOrderResponse orderResponse = krisPayService.getOrderStatus(krisPayTransaction);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			authorisationStatus.setStatus(ResponseStatus.ERROR.name());
+		}
+		return authorisationStatus;
+	}
 
-    @PostMapping("/v1/orders")
-    public AuthorisationStatus authorise(
-            @RequestHeader("Idempotency-Key") String idempotencyKey,
-            @Valid @RequestBody Authorisation authorisation
-    ) {
+	@PostMapping("/v1/orders")
+	public AuthorisationStatus authorise(@RequestHeader("Idempotency-Key") String idempotencyKey,
+			@Valid @RequestBody Authorisation authorisation) {
 
-        if ( idempotencyKey == null || idempotencyKey.isEmpty() ) {
-            throw new MissingIdempotencyKeyException("authorisation request");
-        }
+		if (idempotencyKey == null || idempotencyKey.isEmpty()) {
+			throw new MissingIdempotencyKeyException("authorisation request");
+		}
 
-        KrisPayTransaction krisPayTransaction = txnLogRepo.findByIdempotencyKey(idempotencyKey);
-        
-        //Order info request
-        if ( krisPayTransaction != null ) {
+		KrisPayTransaction krisPayTransaction = txnLogRepo.findByIdempotencyKey(idempotencyKey);
 
-            if ( krisPayTransaction.getKrisPayMessageType() != KrisPayMessageType.AUTHORISE ) {
-                throw new IdempotentKeyMessageTypeMismatchException(krisPayTransaction.getKrisPayMessageType().name());
-            }
+		// Order info request
+		if (krisPayTransaction != null) {
 
-            AuthorisationStatus authorisationStatus = new AuthorisationStatus();
-            authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
-            authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
-            authorisationStatus.setStatus(krisPayTransaction.getStatus() );
+			if (krisPayTransaction.getKrisPayMessageType() != KrisPayMessageType.AUTHORISE) {
+				throw new IdempotentKeyMessageTypeMismatchException(krisPayTransaction.getKrisPayMessageType().name());
+			}
 
-            return authorisationStatus;
-        }
+			AuthorisationStatus authorisationStatus = new AuthorisationStatus();
+			authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
+			authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
+			authorisationStatus.setStatus(krisPayTransaction.getStatus());
 
-        // Not a repeat request
-        krisPayTransaction.setBookingRef(authorisation.getBookingRef());
-        krisPayTransaction.setIdempotencyKey(idempotencyKey);
-        krisPayTransaction.setAmount(authorisation.getAmount());
-        krisPayTransaction.setSessionId(authorisation.getSessionId());
-        krisPayTransaction.setPlatform(authorisation.getPlatform());
-        krisPayTransaction.setRequestId(authorisation.getRequestId());
-        krisPayTransaction.setCreatedAt(new DateTime().toDateTime(DateTimeZone.UTC));
+			return authorisationStatus;
+		}
 
-        AuthorisationStatus authorisationStatus = new AuthorisationStatus();
-        authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
-        authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
+		// Not a repeat request
+		krisPayTransaction.setBookingRef(authorisation.getBookingRef());
+		krisPayTransaction.setIdempotencyKey(idempotencyKey);
+		krisPayTransaction.setAmount(authorisation.getAmount());
+		krisPayTransaction.setSessionId(authorisation.getSessionId());
+		krisPayTransaction.setPlatform(authorisation.getPlatform());
+		krisPayTransaction.setRequestId(authorisation.getRequestId());
+		krisPayTransaction.setCreatedAt(new DateTime().toDateTime(DateTimeZone.UTC));
+		krisPayTransaction.setKrisPayMessageType(KrisPayMessageType.CREATE_ORDER);
+		AuthorisationStatus authorisationStatus = new AuthorisationStatus();
+		authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
+		authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
 
-        txnLogRepo.save(krisPayTransaction);
+		txnLogRepo.save(krisPayTransaction);
 
-        CreateOrder createOrder;
-        try {
-            createOrder = krisPayService.createOrder(krisPayTransaction);
+		CreateOrderResponse orderResponse;
+		try {
+			orderResponse = krisPayService.createOrder(krisPayTransaction);
 
-            if ( "UNPAID".equals( createOrder.getPaymentStatus() ) ) {
+			authorisationStatus.setStatus(orderResponse.getStatus());
+			krisPayTransaction.setStatus(orderResponse.getStatus());
+		} catch (NonRetriableException e) {
 
-                krisPayTransaction.setStatus(ResponseStatus.SUCCESS.name());
-                authorisationStatus.setStatus(krisPayTransaction.getStatus());
+			krisPayTransaction.setStatus(ResponseStatus.ERROR.name());
+			authorisationStatus.setStatus(krisPayTransaction.getStatus());
 
-            } else {
+		} catch (RetriableException e) {
 
-                krisPayTransaction.setStatus(ResponseStatus.DECLINED.name());
-                authorisationStatus.setStatus(krisPayTransaction.getStatus());
+			krisPayTransaction.setStatus(ResponseStatus.ERROR.name());
+			authorisationStatus.setStatus(krisPayTransaction.getStatus());
 
-            }
-        } catch (NonRetriableException e) {
+		}
 
-            krisPayTransaction.setStatus(ResponseStatus.FAILED.name());
-            authorisationStatus.setStatus(krisPayTransaction.getStatus());
+		txnLogRepo.save(krisPayTransaction);
+		return authorisationStatus;
 
-        } catch (RetriableException e) {
-
-            krisPayTransaction.setStatus(ResponseStatus.FAILED.name());
-            authorisationStatus.setStatus(krisPayTransaction.getStatus());
-
-        }
-
-        txnLogRepo.save(krisPayTransaction);
-        return authorisationStatus;
-
-    }
+	}
 
 }

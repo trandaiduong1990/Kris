@@ -6,6 +6,7 @@ import com.cdg.krispay.domain.KrisPayMessageType;
 import com.cdg.krispay.domain.KrisPayTransaction;
 import com.cdg.krispay.domain.ResponseStatus;
 import com.cdg.krispay.dto.CreateOrder;
+import com.cdg.krispay.dto.CreateOrderResponse;
 import com.cdg.krispay.exception.NonRetriableException;
 import com.cdg.krispay.exception.RetriableException;
 import com.cdg.krispay.repo.TxnLogRepo;
@@ -135,8 +136,8 @@ public class AuthorisationControllerV1Test {
         Mockito.when( txnLogRepo.findByIdempotencyKey(eq(idempotencyKey)) )
                 .thenReturn( null );
 
-        CreateOrder createOrder = new CreateOrder();
-        createOrder.setPaymentStatus("UNPAID");
+        CreateOrderResponse createOrder = new CreateOrderResponse();
+        createOrder.setStatus("UNPAID");
 
         Mockito.when( krisPayService.createOrder(any()) )
                 .thenReturn( createOrder  );
@@ -180,8 +181,8 @@ public class AuthorisationControllerV1Test {
         Mockito.when( txnLogRepo.findByIdempotencyKey(eq(idempotencyKey)) )
                 .thenReturn( null );
 
-        CreateOrder createOrder = new CreateOrder();
-        createOrder.setPaymentStatus("ERROR");
+        CreateOrderResponse createOrder = new CreateOrderResponse();
+        createOrder.setStatus("ERROR");
 
         Mockito.when( krisPayService.createOrder(any()) )
                 .thenReturn( createOrder  );

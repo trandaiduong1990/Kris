@@ -4,11 +4,16 @@ import lombok.Data;
 
 @Data
 public class CreateOrderResponse {
-    String partnerOrderId;
-    String paymentStatus;
-    String createdAt;
-    String orderExpiry;
+    
     String status;
     String code;
     String message;
+    OrderData data;
+    
+    @Data
+	public class OrderData {
+    	String partnerOrderId;
+    	String orderExpiry;
+    	String createdAt;
+    }
 }

@@ -66,7 +66,7 @@ public class KrisPayService {
                 .build();
     }
 
-    public CreateOrder createOrder(KrisPayTransaction krisPayTransaction) throws NonRetriableException, RetriableException {
+    public CreateOrderResponse createOrder(KrisPayTransaction krisPayTransaction) throws NonRetriableException, RetriableException {
 
         // No message type or wrong message type
         if ( krisPayTransaction.getKrisPayMessageType() == null || !krisPayTransaction.getKrisPayMessageType().equals(KrisPayMessageType.CREATE_ORDER)) {
@@ -78,15 +78,16 @@ public class KrisPayService {
                 krisPayTransaction.getAmount(),
                 krisPayTransaction.getSessionId() );
 
-        
+        if (krisPayTransaction.getOrderExpiry() != null) {
+        	createOrder.setOrderExpiry(krisPayTransaction.getOrderExpiry().toString());
+        }
         KrisPayProcessorTransactionLog krisPayProcessorTransactionlog = new KrisPayProcessorTransactionLog(krisPayTransaction.getKrisPayMessageType());
         krisPayProcessorTransactionlog.setPartnerOrderId(krisPayTransaction.getBookingRef());
         krisPayProcessorTransactionlog.setSessionId(krisPayTransaction.getSessionId());
         krisPayProcessorTransactionlog.setTxnId(krisPayTransaction.getId());
         krisPayProcessorTransactionlog.setRequest(createOrder.toString());
-        krisPayProcessorTransactionlog.setStatus(KrisPayRequestStatus.SUCCESS);
 
-        CreateOrder response;
+        CreateOrderResponse response;
         try {
             response = this.webClient
                     .post()
@@ -97,7 +98,7 @@ public class KrisPayService {
                     .header("kp-request-id", UUID.randomUUID().toString())
                     .body(Mono.just(createOrder), CreateOrder.class)
                     .retrieve()
-                    .bodyToMono(CreateOrder.class).block();
+                    .bodyToMono(CreateOrderResponse.class).block();
         }
         catch( Exception e ) {
             log.error("Exception sending to krispay server ", e);
@@ -112,9 +113,15 @@ public class KrisPayService {
             processorTxnLogRepo.save(krisPayProcessorTransactionlog);
             throw new RetriableException("Connection error with kris pay");
         }
-        krisPayProcessorTransactionlog.setCreatedAt(response.getCreatedAt());
-        krisPayProcessorTransactionlog.setOrderExpiry(response.getOrderExpiry());
-        krisPayProcessorTransactionlog.setResponse(response.toString());
+        if (KrisPayRequestStatus.valueOf(response.getStatus().toUpperCase()) == KrisPayRequestStatus.SUCCESS) {
+        	krisPayProcessorTransactionlog.setStatus(KrisPayRequestStatus.SUCCESS);
+        	krisPayProcessorTransactionlog.setCreatedAt(response.getData().getCreatedAt());
+        	krisPayProcessorTransactionlog.setOrderExpiry(response.getData().getOrderExpiry());
+        } else {
+        	krisPayProcessorTransactionlog.setStatus(KrisPayRequestStatus.ERROR);
+        	krisPayProcessorTransactionlog.setCode(response.getCode());
+        	krisPayProcessorTransactionlog.setMessage(response.getMessage());
+        }
 
         processorTxnLogRepo.save(krisPayProcessorTransactionlog);
 
@@ -181,4 +188,41 @@ public class KrisPayService {
 //        return DigestUtils.sha256(hashData).toString();
         return DigestUtils.sha256Hex(hashData);
     }
+
+	public CreateOrderResponse getOrderStatus(KrisPayTransaction krisPayTransaction) {
+		CreateOrder createOrder = new CreateOrder(
+                krisPayTransaction.getBookingRef(),
+                krisPayTransaction.getAmount(),
+                krisPayTransaction.getSessionId() );
+
+        if (krisPayTransaction.getOrderExpiry() != null) {
+        	createOrder.setOrderExpiry(krisPayTransaction.getOrderExpiry().toString());
+        }
+        KrisPayProcessorTransactionLog krisPayProcessorTransactionlog = new KrisPayProcessorTransactionLog(krisPayTransaction.getKrisPayMessageType());
+        krisPayProcessorTransactionlog.setPartnerOrderId(krisPayTransaction.getBookingRef());
+        krisPayProcessorTransactionlog.setSessionId(krisPayTransaction.getSessionId());
+        krisPayProcessorTransactionlog.setTxnId(krisPayTransaction.getId());
+        krisPayProcessorTransactionlog.setRequest(createOrder.toString());
+
+        CreateOrderResponse response;
+        try {
+            response = this.webClient
+                    .get()
+                    .uri("/partner/orders/" + krisPayTransaction.getBookingRef())
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .header("x-signature", getSignature())
+                    .header("api-key", apiKey)
+                    .header("kp-request-id", UUID.randomUUID().toString())
+                    .body(Mono.just(createOrder), CreateOrder.class)
+                    .retrieve()
+                    .bodyToMono(CreateOrderResponse.class).block();
+        }
+        catch( Exception e ) {
+            log.error("Exception sending to krispay server ", e);
+            krisPayProcessorTransactionlog.setStatus(KrisPayRequestStatus.ERROR);
+            processorTxnLogRepo.save(krisPayProcessorTransactionlog);
+            throw new RetriableException(e.getMessage());
+        }
+	}
+    
 }

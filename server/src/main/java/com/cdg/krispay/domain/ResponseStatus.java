@@ -4,7 +4,8 @@ public enum ResponseStatus {
 
     SUCCESS("SUCCESS"),
     FAILED("FAILED"),
-    DECLINED("DECLINE");
+    DECLINED("DECLINE"),
+	ERROR("ERROR");
 
     public final String type;
 

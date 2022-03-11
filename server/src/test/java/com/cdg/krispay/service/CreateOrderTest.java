@@ -4,6 +4,7 @@ import com.cdg.krispay.domain.KrisPayMessageType;
 import com.cdg.krispay.domain.KrisPayProcessorTransactionLog;
 import com.cdg.krispay.domain.KrisPayTransaction;
 import com.cdg.krispay.dto.CreateOrder;
+import com.cdg.krispay.dto.CreateOrderResponse;
 import com.cdg.krispay.exception.NonRetriableException;
 import com.cdg.krispay.repo.ProcessorTxnLogRepo;
 import com.cdg.krispay.exception.RetriableException;
@@ -92,12 +93,12 @@ public class CreateOrderTest {
                 .setBody(objectMapper.writeValueAsString(createOrderMockResponse))
                 .addHeader("Content-Type", "application/json"));
 
-        CreateOrder createOrderResponse = krisPayService.createOrder(krisPayTransaction);
+        CreateOrderResponse createOrderResponse = krisPayService.createOrder(krisPayTransaction);
 
         // Verify the return object status is correct
         Assertions.assertNotNull(createOrderResponse);
-        Assertions.assertEquals(createOrderResponse.getPartnerOrderId(), krisPayTransaction.getBookingRef());
-        Assertions.assertEquals("UNPAID", createOrderResponse.getPaymentStatus());
+        Assertions.assertEquals(createOrderResponse.getData().getPartnerOrderId(), krisPayTransaction.getBookingRef());
+        Assertions.assertEquals("UNPAID", createOrderResponse.getStatus());
 
         // Verify the txnlog is corrected saved
         Mockito.verify(txnLogRepository).save(krisPayProcessorTransactionArgumentCaptor.capture());
@@ -108,7 +109,7 @@ public class CreateOrderTest {
         Assertions.assertEquals(createOrderMockResponse.getOrderExpiry(), krisPayProcessorTransactionArgumentCaptor.getValue().getOrderExpiry() );
         Assertions.assertEquals(krisPayTransaction.getId(),krisPayProcessorTransactionArgumentCaptor.getValue().getTxnId());
         Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getRequest());
-        Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getResponse());
+        Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getMessage());
 
     }
 
@@ -162,7 +163,7 @@ public class CreateOrderTest {
         Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getOrderExpiry() );
         Assertions.assertEquals(krisPayTransaction.getId(),krisPayProcessorTransactionArgumentCaptor.getValue().getTxnId());
         Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getRequest());
-        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getResponse());
+        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getMessage());
 
     }
 
@@ -192,7 +193,7 @@ public class CreateOrderTest {
         Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getOrderExpiry() );
         Assertions.assertEquals(krisPayTransaction.getId(),krisPayProcessorTransactionArgumentCaptor.getValue().getTxnId());
         Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getRequest());
-        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getResponse());
+        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getMessage());
 
     }
 
@@ -222,7 +223,7 @@ public class CreateOrderTest {
         Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getOrderExpiry() );
         Assertions.assertEquals(krisPayTransaction.getId(),krisPayProcessorTransactionArgumentCaptor.getValue().getTxnId());
         Assertions.assertNotNull(krisPayProcessorTransactionArgumentCaptor.getValue().getRequest());
-        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getResponse());
+        Assertions.assertNull(krisPayProcessorTransactionArgumentCaptor.getValue().getMessage());
 
     }
 
