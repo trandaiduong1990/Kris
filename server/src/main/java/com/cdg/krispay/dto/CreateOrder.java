@@ -20,6 +20,7 @@ public class CreateOrder {
     String status;
     String code;
     String message;
+    String reason;
 
     public CreateOrder() {}
 

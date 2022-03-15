@@ -15,5 +15,6 @@ public class CreateOrderResponse {
     	String partnerOrderId;
     	String orderExpiry;
     	String createdAt;
+    	String paymentStatus;
     }
 }

@@ -5,7 +5,11 @@ public enum ResponseStatus {
     SUCCESS("SUCCESS"),
     FAILED("FAILED"),
     DECLINED("DECLINE"),
-	ERROR("ERROR");
+	ERROR("ERROR"),
+	UNPAID("UNPAID"),
+	AUTHORIZED("AUTHORIZED"),
+	CAPTURED("CAPTURED"),
+	CANCELLED("CANCELLED");
 
     public final String type;
 

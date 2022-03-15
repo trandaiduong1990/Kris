@@ -11,4 +11,6 @@ public interface TxnLogRepo extends JpaRepository<KrisPayTransaction, Long> {
 
     KrisPayTransaction findByIdempotencyKey(String idempotentKey);
     KrisPayTransaction findByRequestId(String requestId);
+    KrisPayTransaction findByBookingRef(String bookingRef);
+    
 }

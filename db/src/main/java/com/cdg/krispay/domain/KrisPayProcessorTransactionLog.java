@@ -31,6 +31,9 @@ public class KrisPayProcessorTransactionLog {
     String message;
     String code;
     Long txnId;
+    String response;
+    String responseStatus;
+    String paymentStatus;
 
     public KrisPayProcessorTransactionLog(KrisPayMessageType msgType) {
         this.msgType = msgType;

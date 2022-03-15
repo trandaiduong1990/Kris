@@ -7,22 +7,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Data
-public class Authorisation {
+public class CancelPreAuth {
 
     @NotEmpty(message = "requestId is required")
     String requestId;
 
-    @NotEmpty(message = "bookingRef is required")
-    String bookingRef;
-
-    @PositiveOrZero(message = "amount cannot be negative")
-    double amount;
-
-    @NotNull(message = "sessionId is required")
-    String sessionId;
-
-    String platform;
-    
-
+    @NotEmpty(message = "Reason code is required")
+    String reason;
 
 }

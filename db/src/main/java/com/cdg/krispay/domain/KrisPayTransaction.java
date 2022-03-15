@@ -28,4 +28,12 @@ public class KrisPayTransaction {
     String status;
     DateTime orderExpiry;
     DateTime createdAt;
+    String cancelReason;
+    Double jobNumber;
+    String entryMode;
+    String vehicleId;
+    String entity;
+    Double adminAmount;
+    Double gstAmount;
+    Double fareAmount;
 }

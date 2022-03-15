@@ -16,7 +16,9 @@ spring:
     password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-
+  profiles:
+    active:
+    - dev
 management:
   endpoints:
     web:

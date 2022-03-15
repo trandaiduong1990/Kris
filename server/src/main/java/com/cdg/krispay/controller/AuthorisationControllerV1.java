@@ -13,10 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,23 +36,86 @@ public class AuthorisationControllerV1 extends BaseController {
 	KrisPayService krisPayService;
 	
 	@GetMapping("/auth/:bookingRef")
-	public AuthorisationStatus preAuthStatus(@PathVariable(value = "bookingRef") String bookingRef) {
-		AuthorisationStatus authorisationStatus = new AuthorisationStatus();
+	public KRHostResponse preAuthStatus(@PathVariable(value = "bookingRef") String requestId) {
+		KRHostResponse kRHostResponse = new KRHostResponse();
 		
 		try {
-			KrisPayTransaction krisPayTransaction = txnLogRepo.findByRequestId(bookingRef);
+			KrisPayTransaction krisPayTransaction = txnLogRepo.findByRequestId(requestId);
 			if (krisPayTransaction != null) {
 				CreateOrderResponse orderResponse = krisPayService.getOrderStatus(krisPayTransaction);
+				kRHostResponse.setStatus(orderResponse.getStatus());
+				kRHostResponse.setRequestId(requestId);
+				kRHostResponse.setBookingRef(krisPayTransaction.getBookingRef());
 			}
-		} catch (Exception e) {
+		} catch (RetriableException e) {
 			// TODO: handle exception
-			authorisationStatus.setStatus(ResponseStatus.ERROR.name());
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
+		} catch (Exception e) {
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
 		}
-		return authorisationStatus;
+		return kRHostResponse;
+	}
+	
+	@PutMapping("/auth/:bookingRef/cancel")
+	public KRHostResponse cancelPreAuth(@PathVariable(value = "bookingRef") String bookingRef, @Valid @RequestBody CancelPreAuth cancelPreAuth) {
+		KRHostResponse kRHostResponse = new KRHostResponse();
+		
+		try {
+			KrisPayTransaction krisPayTransaction = txnLogRepo.findByBookingRef(bookingRef);
+			if (krisPayTransaction != null) {
+				krisPayTransaction.setCancelReason(cancelPreAuth.getReason());
+				CreateOrderResponse orderResponse = krisPayService.cancelPreAuth(krisPayTransaction);
+				kRHostResponse.setStatus(orderResponse.getStatus());
+				kRHostResponse.setRequestId(krisPayTransaction.getRequestId());
+				kRHostResponse.setBookingRef(krisPayTransaction.getBookingRef());
+				
+				krisPayTransaction.setKrisPayMessageType(KrisPayMessageType.CANCEL_PRE_AUTH);
+				krisPayTransaction.setStatus(orderResponse.getStatus());
+				txnLogRepo.save(krisPayTransaction);
+			}
+		} catch (RetriableException e) {
+			// TODO: handle exception
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
+		} catch (Exception e) {
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
+		}
+		return kRHostResponse;
 	}
 
+	@PutMapping("/auth/:bookingRef/capture")
+	public KRHostResponse capture(@PathVariable(value = "bookingRef") String bookingRef, @Valid @RequestBody CaptureRequest request) {
+		KRHostResponse kRHostResponse = new KRHostResponse();
+		
+		try {
+			KrisPayTransaction transactionDto = new KrisPayTransaction();
+			BeanUtils.copyProperties(request, transactionDto);
+			BeanUtils.copyProperties(kRHostResponse, transactionDto, null)
+			
+			KrisPayTransaction krisPayTransaction = txnLogRepo.captureTranx(transactionDto, bookingRef);
+			
+			
+			if (krisPayTransaction != null) {
+				krisPayTransaction.setCancelReason(cancelPreAuth.getReason());
+				CreateOrderResponse orderResponse = krisPayService.cancelPreAuth(krisPayTransaction);
+				kRHostResponse.setStatus(orderResponse.getStatus());
+				kRHostResponse.setRequestId(krisPayTransaction.getRequestId());
+				kRHostResponse.setBookingRef(krisPayTransaction.getBookingRef());
+				
+				krisPayTransaction.setKrisPayMessageType(KrisPayMessageType.CANCEL_PRE_AUTH);
+				krisPayTransaction.setStatus(orderResponse.getStatus());
+				txnLogRepo.save(krisPayTransaction);
+			}
+		} catch (RetriableException e) {
+			// TODO: handle exception
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
+		} catch (Exception e) {
+			kRHostResponse.setStatus(ResponseStatus.ERROR.name());
+		}
+		return kRHostResponse;
+	}
+	
 	@PostMapping("/v1/orders")
-	public AuthorisationStatus authorise(@RequestHeader("Idempotency-Key") String idempotencyKey,
+	public KRHostResponse authorise(@RequestHeader("Idempotency-Key") String idempotencyKey,
 			@Valid @RequestBody Authorisation authorisation) {
 
 		if (idempotencyKey == null || idempotencyKey.isEmpty()) {
@@ -66,12 +131,12 @@ public class AuthorisationControllerV1 extends BaseController {
 				throw new IdempotentKeyMessageTypeMismatchException(krisPayTransaction.getKrisPayMessageType().name());
 			}
 
-			AuthorisationStatus authorisationStatus = new AuthorisationStatus();
-			authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
-			authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
-			authorisationStatus.setStatus(krisPayTransaction.getStatus());
+			KRHostResponse kRHostResponse = new KRHostResponse();
+			kRHostResponse.setBookingRef(krisPayTransaction.getBookingRef());
+			kRHostResponse.setRequestId(krisPayTransaction.getRequestId());
+			kRHostResponse.setStatus(krisPayTransaction.getStatus());
 
-			return authorisationStatus;
+			return kRHostResponse;
 		}
 
 		// Not a repeat request
@@ -83,9 +148,9 @@ public class AuthorisationControllerV1 extends BaseController {
 		krisPayTransaction.setRequestId(authorisation.getRequestId());
 		krisPayTransaction.setCreatedAt(new DateTime().toDateTime(DateTimeZone.UTC));
 		krisPayTransaction.setKrisPayMessageType(KrisPayMessageType.CREATE_ORDER);
-		AuthorisationStatus authorisationStatus = new AuthorisationStatus();
-		authorisationStatus.setBookingRef(krisPayTransaction.getBookingRef());
-		authorisationStatus.setRequestId(krisPayTransaction.getRequestId());
+		KRHostResponse kRHostResponse = new KRHostResponse();
+		kRHostResponse.setBookingRef(krisPayTransaction.getBookingRef());
+		kRHostResponse.setRequestId(krisPayTransaction.getRequestId());
 
 		txnLogRepo.save(krisPayTransaction);
 
@@ -93,22 +158,22 @@ public class AuthorisationControllerV1 extends BaseController {
 		try {
 			orderResponse = krisPayService.createOrder(krisPayTransaction);
 
-			authorisationStatus.setStatus(orderResponse.getStatus());
+			kRHostResponse.setStatus(orderResponse.getStatus());
 			krisPayTransaction.setStatus(orderResponse.getStatus());
 		} catch (NonRetriableException e) {
 
 			krisPayTransaction.setStatus(ResponseStatus.ERROR.name());
-			authorisationStatus.setStatus(krisPayTransaction.getStatus());
+			kRHostResponse.setStatus(krisPayTransaction.getStatus());
 
 		} catch (RetriableException e) {
 
 			krisPayTransaction.setStatus(ResponseStatus.ERROR.name());
-			authorisationStatus.setStatus(krisPayTransaction.getStatus());
+			kRHostResponse.setStatus(krisPayTransaction.getStatus());
 
 		}
 
 		txnLogRepo.save(krisPayTransaction);
-		return authorisationStatus;
+		return kRHostResponse;
 
 	}
 
